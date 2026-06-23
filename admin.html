@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Admin Panel · BigLand Construction</title>
+<meta name="robots" content="noindex,nofollow"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.aw{max-width:980px;margin:0 auto;padding:96px 24px 80px}
+.tab-content{display:none}.tab-content.active{display:block}
+.fr{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:10px}
+.fr textarea,.fr .full{grid-column:1/-1}
+.sc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:12px;transition:box-shadow .2s}
+.sc:hover{box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.sc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.sc-head h5{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:0}
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:9999;
+  padding:12px 20px;border-radius:10px;font-size:14px;
+  opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;
+  display:flex;align-items:center;gap:10px;min-width:260px;
+}
+.toast.show{opacity:1;transform:none}
+.toast.success{background:#1a3a1a;border:1px solid #2d6a2d;color:#7dde7d}
+.toast.error{background:#3a1a1a;border:1px solid #8a2d2d;color:#de7d7d}
+.toast.info{background:var(--dark);border:1px solid rgba(255,255,255,.15);color:#fff}
+.gh-setup{background:linear-gradient(135deg,var(--dark),var(--dark2));border-radius:14px;padding:28px;margin-bottom:28px;color:#fff}
+.gh-setup h3{color:#fff;font-size:16px;margin-bottom:6px}
+.gh-setup p{color:rgba(255,255,255,.65);font-size:13px;margin-bottom:18px;line-height:1.6}
+.gh-setup .input{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
+.gh-setup .input::placeholder{color:rgba(255,255,255,.35)}
+.gh-setup .input:focus{border-color:var(--accent-light);box-shadow:0 0 0 3px rgba(232,213,163,.15)}
+.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+.status-dot.connected{background:#4caf50}
+.status-dot.disconnected{background:#ef5350}
+.live-btn{background:linear-gradient(135deg,#2d6a2d,#1a4a1a);border:none;color:#7dde7d;padding:12px 24px;border-radius:var(--rf);font-weight:600;font-size:14px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.live-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(77,175,74,.25)}
+.live-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.spinner{width:16px;height:16px;border:2px solid rgba(125,222,125,.3);border-top-color:#7dde7d;border-radius:50%;animation:spin .7s linear infinite;display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.deploy-info{background:rgba(184,149,58,.1);border:1px solid rgba(184,149,58,.25);border-radius:8px;padding:12px 16px;font-size:13px;color:rgba(255,255,255,.7);margin-top:14px;display:none}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Big<span>Land</span><small>Admin Panel</small></a>
+    <ul class="nav-links"><li><a href="index.html">← Back to site</a></li><li><a href="careers.html">Careers</a></li></ul>
+  </div>
+</header>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="max-width:420px;margin:160px auto;padding:0 24px;text-align:center">
+  <div style="font-size:44px;margin-bottom:16px">🔐</div>
+  <h1 style="font-size:22px;margin-bottom:8px">Admin Panel</h1>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:24px;line-height:1.6">
+    Default password: <code style="background:var(--accent-soft);padding:2px 8px;border-radius:5px">bigland2026</code><br/>
+    Change it in this file: search <code>const PASS</code>
+  </p>
+  <input type="password" id="gatePass" class="input" placeholder="Enter admin password" style="margin-bottom:12px"/>
+  <button class="btn btn-primary btn-block" onclick="tryLogin()">Enter Admin</button>
+  <p id="gateErr" style="color:#c0392b;font-size:13px;margin-top:8px;display:none">Wrong password.</p>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="aw" class="aw hidden">
+
+  <!-- GitHub Live Connection -->
+  <div class="gh-setup" id="ghSetup">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px;margin-bottom:16px">
+      <div>
+        <h3>🚀 Live GitHub Connection</h3>
+        <p>Connect your GitHub repo so changes here update your live site <strong>automatically</strong> — no manual file uploads needed. Changes go live in ~60 seconds.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+        <span id="ghStatus"><span class="status-dot disconnected"></span><span style="font-size:13px;color:rgba(255,255,255,.6)">Not connected</span></span>
+      </div>
+    </div>
+    <div class="fr" style="margin-bottom:14px">
+      <label style="color:rgba(255,255,255,.7);font-size:13px">
+        GitHub Username / Org
+        <input id="ghOwner" class="input" placeholder="e.g. jspn9400" style="margin-top:5px"/>
+      </label>
+      <label style="color:rgba(255,255,255,.7);font-size:13px">
+        Repository Name
+        <input id="ghRepo" class="input" placeholder="e.g. bigland-construction-site" style="margin-top:5px"/>
+      </label>
+      <label style="color:rgba(255,255,255,.7);font-size:13px;grid-column:1/-1">
+        Personal Access Token (PAT) — needs <strong>Contents: Read & Write</strong> permission
+        <input id="ghToken" class="input" type="password" placeholder="github_pat_xxxxxxxxxxxx" style="margin-top:5px"/>
+        <span style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px;display:block">
+          Get one: github.com → Settings → Developer settings → Personal access tokens → Fine-grained → New token → Repository permissions → Contents: Read & Write
+        </span>
+      </label>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="btn btn-outline" style="border-color:rgba(255,255,255,.25);color:#fff;font-size:13px" onclick="testGH()">🔗 Test Connection</button>
+      <button class="btn" style="background:rgba(184,149,58,.2);border-color:var(--accent);color:var(--accent-light);font-size:13px" onclick="saveGHSettings()">💾 Save Settings</button>
+    </div>
+    <div class="deploy-info" id="deployInfo">
+      ✅ <strong>Last pushed:</strong> <span id="lastPush">—</span> &nbsp;·&nbsp;
+      GitHub Pages usually updates within 60 seconds after a push.
+      <a id="pagesLink" href="#" target="_blank" rel="noreferrer" style="color:var(--accent-light);margin-left:8px">Open live site →</a>
+    </div>
+  </div>
+
+  <!-- Top Action Bar -->
+  <div class="admin-bar" style="margin-bottom:24px">
+    <span style="font-size:13px">
+      <strong>Admin Panel</strong> — edits auto-save to browser draft.
+    </span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-outline btn-sm" onclick="reloadLive()">↻ Reload live data</button>
+      <button class="btn btn-outline btn-sm" onclick="downloadJSON()">⬇ Download data.json</button>
+      <button class="live-btn" id="livePushBtn" onclick="pushLive()">
+        <span id="liveSpinner" class="spinner"></span>
+        🚀 Save &amp; Push Live
+      </button>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="admin-tabs">
+    <button class="admin-tab active" onclick="showTab('company')">🏢 Company</button>
+    <button class="admin-tab" onclick="showTab('packages')">📦 Packages</button>
+    <button class="admin-tab" onclick="showTab('team')">👥 Team</button>
+    <button class="admin-tab" onclick="showTab('brands')">🏷 Brands</button>
+    <button class="admin-tab" onclick="showTab('partners')">🤝 Partners</button>
+    <button class="admin-tab" onclick="showTab('clients')">⭐ Clients</button>
+  </div>
+
+  <!-- COMPANY TAB -->
+  <div class="tab-content active" id="tab-company">
+    <div class="sc">
+      <div class="sc-head"><h5>Basic Info</h5></div>
+      <div class="fr">
+        <label>Company Name<br/><input id="co-name" class="input"/></label>
+        <label>Slogan<br/><input id="co-slogan" class="input"/></label>
+        <label>Phone<br/><input id="co-phone" class="input"/></label>
+        <label>WhatsApp (digits only)<br/><input id="co-wa" class="input" placeholder="917505205205"/></label>
+        <label>Email<br/><input id="co-email" class="input"/></label>
+        <label class="full">Address<br/><input id="co-address" class="input"/></label>
+        <label class="full">YouTube Embed URL<br/><input id="co-video" class="input" placeholder="https://www.youtube.com/embed/VIDEO_ID"/></label>
+      </div>
+    </div>
+    <div class="sc">
+      <div class="sc-head"><h5>Social Links</h5></div>
+      <div class="fr">
+        <label>Facebook<br/><input id="soc-facebook" class="input" placeholder="https://facebook.com/..."/></label>
+        <label>Instagram<br/><input id="soc-instagram" class="input" placeholder="https://instagram.com/..."/></label>
+        <label>YouTube<br/><input id="soc-youtube" class="input" placeholder="https://youtube.com/..."/></label>
+        <label>LinkedIn<br/><input id="soc-linkedin" class="input" placeholder="https://linkedin.com/..."/></label>
+      </div>
+    </div>
+    <div class="sc">
+      <div class="sc-head"><h5>Stats (Hero Counters)</h5></div>
+      <div id="statsRows"></div>
+      <button class="btn btn-outline btn-sm" onclick="addStat()">+ Add Stat</button>
+    </div>
+  </div>
+
+  <!-- PACKAGES TAB -->
+  <div class="tab-content" id="tab-packages">
+    <div id="pkgRows"></div>
+    <button class="btn btn-outline btn-sm" onclick="addPkg()">+ Add Package</button>
+    <h4 style="font-size:14px;margin:24px 0 12px">Estimator Base Rates (₹/sq.ft.)</h4>
+    <div class="sc"><div class="fr" id="rateFields"></div></div>
+    <h4 style="font-size:14px;margin:18px 0 12px">Location Multipliers</h4>
+    <div class="sc"><div class="fr" id="locFields"></div></div>
+    <h4 style="font-size:14px;margin:18px 0 12px">Material Quality Multipliers</h4>
+    <div class="sc"><div class="fr" id="matFields"></div></div>
+    <h4 style="font-size:14px;margin:18px 0 12px">Brand Lists for Estimator (comma-separated)</h4>
+    <div class="sc"><div class="fr" id="brandListFields"></div></div>
+  </div>
+
+  <!-- TEAM TAB -->
+  <div class="tab-content" id="tab-team">
+    <p style="color:var(--muted);font-size:13px;margin-bottom:16px">Upload photos to <code>images/team/</code> in GitHub, then type the path here (e.g. <code>images/team/rajesh.jpg</code>). Leave blank for gold initials.</p>
+    <div id="teamRows"></div>
+    <button class="btn btn-outline btn-sm" onclick="addTeam()">+ Add Member</button>
+  </div>
+
+  <!-- BRANDS TAB -->
+  <div class="tab-content" id="tab-brands">
+    <p style="color:var(--muted);font-size:13px;margin-bottom:16px">Upload logos to <code>images/brands/</code>. Leave logo blank to show text name.</p>
+    <div id="brandRows"></div>
+    <button class="btn btn-outline btn-sm" onclick="addBrand()">+ Add Brand</button>
+  </div>
+
+  <!-- PARTNERS TAB -->
+  <div class="tab-content" id="tab-partners">
+    <div id="partnerRows"></div>
+    <button class="btn btn-outline btn-sm" onclick="addPartner()">+ Add Partner</button>
+  </div>
+
+  <!-- CLIENTS TAB -->
+  <div class="tab-content" id="tab-clients">
+    <p style="color:var(--muted);font-size:13px;margin-bottom:16px">Upload logos to <code>images/clients/</code>. Leave logo blank to show text name.</p>
+    <div id="clientRows"></div>
+    <button class="btn btn-outline btn-sm" onclick="addClient()">+ Add Client</button>
+  </div>
+
+</div><!-- /aw -->
+
+<div class="toast" id="toast"></div>
+
+<script src="data-loader.js"></script>
+<script src="script.js"></script>
+<script>
+// ─────────────────────────────────────────────
+// CONFIG — change password here
+const PASS = 'bigland2026';
+const DRAFT_KEY = 'bl_draft_v3';
+const GH_KEY = 'bl_gh_settings';
+// ─────────────────────────────────────────────
+
+let D = {};
+
+// ── Auth ──
+function tryLogin() {
+  if (document.getElementById('gatePass').value === PASS) {
+    sessionStorage.setItem('bl_adm','1');
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('aw').classList.remove('hidden');
+    init();
+  } else {
+    document.getElementById('gateErr').style.display = 'block';
+  }
+}
+document.getElementById('gatePass').addEventListener('keydown', e => e.key === 'Enter' && tryLogin());
+if (sessionStorage.getItem('bl_adm') === '1') {
+  document.getElementById('gate').classList.add('hidden');
+  document.getElementById('aw').classList.remove('hidden');
+}
+
+// ── Tabs ──
+function showTab(name) {
+  const tabs = ['company','packages','team','brands','partners','clients'];
+  document.querySelectorAll('.admin-tab').forEach((t,i) => t.classList.toggle('active', tabs[i] === name));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id === 'tab-' + name));
+}
+
+// ── Toast ──
+function toast(msg, type = 'info') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `toast ${type} show`;
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ── GitHub Settings ──
+function loadGHSettings() {
+  const s = JSON.parse(localStorage.getItem(GH_KEY) || '{}');
+  if (s.owner) document.getElementById('ghOwner').value = s.owner;
+  if (s.repo) document.getElementById('ghRepo').value = s.repo;
+  if (s.token) document.getElementById('ghToken').value = s.token;
+  if (s.owner && s.repo && s.token) updateGHStatus(true);
+  if (s.lastPush) {
+    document.getElementById('deployInfo').style.display = 'block';
+    document.getElementById('lastPush').textContent = new Date(s.lastPush).toLocaleString();
+    document.getElementById('pagesLink').href = `https://${s.owner}.github.io/${s.repo}/`;
+  }
+}
+function saveGHSettings() {
+  const s = { owner: ghOwner(), repo: ghRepo(), token: ghToken() };
+  if (!s.owner || !s.repo || !s.token) { toast('Fill in all three GitHub fields.', 'error'); return; }
+  localStorage.setItem(GH_KEY, JSON.stringify({ ...JSON.parse(localStorage.getItem(GH_KEY) || '{}'), ...s }));
+  toast('GitHub settings saved to browser.', 'success');
+  updateGHStatus(false);
+}
+function ghOwner() { return document.getElementById('ghOwner').value.trim(); }
+function ghRepo() { return document.getElementById('ghRepo').value.trim(); }
+function ghToken() { return document.getElementById('ghToken').value.trim(); }
+function updateGHStatus(connected) {
+  document.getElementById('ghStatus').innerHTML = connected
+    ? `<span class="status-dot connected"></span><span style="font-size:13px;color:rgba(255,255,255,.7)">Connected</span>`
+    : `<span class="status-dot disconnected"></span><span style="font-size:13px;color:rgba(255,255,255,.6)">Not connected</span>`;
+}
+
+// ── GitHub API ──
+async function ghRequest(method, path, body) {
+  const res = await fetch(`https://api.github.com/repos/${ghOwner()}/${ghRepo()}${path}`, {
+    method,
+    headers: {
+      'Authorization': `Bearer ${ghToken()}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json',
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.message || `GitHub API error ${res.status}`);
+  return data;
+}
+
+async function testGH() {
+  if (!ghOwner() || !ghRepo() || !ghToken()) { toast('Fill in all three GitHub fields first.', 'error'); return; }
+  try {
+    const data = await ghRequest('GET', '/contents/data.json');
+    updateGHStatus(true);
+    toast(`✅ Connected! Found data.json (${data.size} bytes)`, 'success');
+  } catch (err) {
+    updateGHStatus(false);
+    toast(`❌ ${err.message}`, 'error');
+  }
+}
+
+async function pushLive() {
+  if (!ghOwner() || !ghRepo() || !ghToken()) {
+    toast('⚠️ Fill in GitHub settings first (owner, repo, token).', 'error');
+    return;
+  }
+  const btn = document.getElementById('livePushBtn');
+  const spinner = document.getElementById('liveSpinner');
+  btn.disabled = true;
+  spinner.style.display = 'block';
+  btn.childNodes[btn.childNodes.length - 1].textContent = ' Pushing…';
+
+  try {
+    // Step 1: Get current file SHA (needed for PUT/update)
+    let sha = null;
+    try {
+      const cur = await ghRequest('GET', '/contents/data.json');
+      sha = cur.sha;
+    } catch {
+      // File doesn't exist yet — first push
+    }
+
+    // Step 2: Encode data.json as base64
+    const json = JSON.stringify(D, null, 2);
+    const base64 = btoa(unescape(encodeURIComponent(json)));
+
+    // Step 3: Commit the file
+    const body = {
+      message: `Admin panel update — ${new Date().toLocaleString()}`,
+      content: base64,
+      branch: 'main',
+    };
+    if (sha) body.sha = sha;
+
+    await ghRequest('PUT', '/contents/data.json', body);
+
+    // Step 4: Save push timestamp
+    const stored = JSON.parse(localStorage.getItem(GH_KEY) || '{}');
+    stored.lastPush = new Date().toISOString();
+    stored.owner = ghOwner(); stored.repo = ghRepo(); stored.token = ghToken();
+    localStorage.setItem(GH_KEY, JSON.stringify(stored));
+
+    // Update UI
+    document.getElementById('deployInfo').style.display = 'block';
+    document.getElementById('lastPush').textContent = new Date().toLocaleString();
+    document.getElementById('pagesLink').href = `https://${ghOwner()}.github.io/${ghRepo()}/`;
+    updateGHStatus(true);
+    toast('🚀 Pushed to GitHub! Site will update in ~60 seconds.', 'success');
+  } catch (err) {
+    toast(`❌ Push failed: ${err.message}`, 'error');
+  } finally {
+    btn.disabled = false;
+    spinner.style.display = 'none';
+    btn.childNodes[btn.childNodes.length - 1].textContent = ' Save & Push Live';
+  }
+}
+
+// ── Data CRUD ──
+async function init() {
+  loadGHSettings();
+  const saved = localStorage.getItem(DRAFT_KEY);
+  D = saved ? JSON.parse(saved) : await fetchLive();
+  renderAll();
+}
+async function fetchLive() {
+  try {
+    // Try GitHub API first if connected
+    if (ghOwner() && ghRepo() && ghToken()) {
+      const file = await ghRequest('GET', '/contents/data.json');
+      return JSON.parse(atob(file.content.replace(/\n/g, '')));
+    }
+    const r = await fetch('data.json', { cache: 'no-store' });
+    return await r.json();
+  } catch {
+    toast("Couldn't load data.json from GitHub or live site.", 'error');
+    return {};
+  }
+}
+async function reloadLive() {
+  if (!confirm('Discard browser draft and reload from live data.json?')) return;
+  D = await fetchLive();
+  localStorage.removeItem(DRAFT_KEY);
+  renderAll();
+  toast('Reloaded from live site.', 'info');
+}
+function save() {
+  localStorage.setItem(DRAFT_KEY, JSON.stringify(D));
+}
+function downloadJSON() {
+  save();
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(D, null, 2)], { type: 'application/json' }));
+  a.download = 'data.json'; a.click();
+  toast('data.json downloaded.', 'info');
+}
+
+// ── Render all ──
+function renderAll() {
+  renderCompany(); renderStats();
+  renderPkgs(); renderRates();
+  renderTeam(); renderBrands(); renderPartners(); renderClients();
+}
+
+// ── Helpers ──
+function e(s) { return String(s ?? '').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+function lbl(text, val, setter, ph = '') {
+  const d = document.createElement('label');
+  d.innerHTML = `${text}<br/><input class="input" value="${e(val)}" placeholder="${e(ph)}"/>`;
+  d.querySelector('input').addEventListener('input', function () { setter(this.value); save(); });
+  return d;
+}
+function ta(text, val, setter, rows = 3) {
+  const d = document.createElement('label');
+  d.className = 'full';
+  d.innerHTML = `${text}<br/><textarea class="input" rows="${rows}">${e(val)}</textarea>`;
+  d.querySelector('textarea').addEventListener('input', function () { setter(this.value); save(); });
+  return d;
+}
+function chk(text, val, setter) {
+  const d = document.createElement('label');
+  d.style.display = 'flex'; d.style.alignItems = 'center'; d.style.gap = '8px';
+  d.innerHTML = `<input type="checkbox" ${val ? 'checked' : ''}/> ${text}`;
+  d.querySelector('input').addEventListener('change', function () { setter(this.checked); save(); });
+  return d;
+}
+function delBtn(fn) {
+  const b = document.createElement('button');
+  b.className = 'btn-icon danger'; b.title = 'Delete'; b.textContent = '🗑';
+  b.addEventListener('click', fn); return b;
+}
+function wrap(children, onDel, title = '') {
+  const sc = document.createElement('div'); sc.className = 'sc';
+  const h = document.createElement('div'); h.className = 'sc-head';
+  if (title) { const t = document.createElement('h5'); t.textContent = title; h.appendChild(t); }
+  const acts = document.createElement('div');
+  acts.appendChild(delBtn(onDel));
+  h.appendChild(acts); sc.appendChild(h);
+  const fr = document.createElement('div'); fr.className = 'fr';
+  children.forEach(c => fr.appendChild(c));
+  sc.appendChild(fr); return sc;
+}
+
+// ── Company ──
+function renderCompany() {
+  const co = D.company || {};
+  const soc = co.social || {};
+  [['co-name','name'],['co-slogan','slogan'],['co-phone','phone'],['co-wa','whatsapp'],
+   ['co-email','email'],['co-address','address'],['co-video','videoUrl']].forEach(([id, k]) => {
+    const el = document.getElementById(id); if (!el) return;
+    el.value = co[k] || '';
+    el.addEventListener('input', function () { D.company = D.company || {}; D.company[k] = this.value; save(); });
+  });
+  ['facebook','instagram','youtube','linkedin'].forEach(k => {
+    const el = document.getElementById('soc-' + k); if (!el) return;
+    el.value = soc[k] || '';
+    el.addEventListener('input', function () { D.company.social = D.company.social || {}; D.company.social[k] = this.value; save(); });
+  });
+}
+
+// ── Stats ──
+function renderStats() {
+  const w = document.getElementById('statsRows'); w.innerHTML = '';
+  (D.stats || []).forEach((s, i) => {
+    w.appendChild(wrap([
+      lbl('Value', s.value, v => { D.stats[i].value = Number(v); }),
+      lbl('Suffix', s.suffix, v => { D.stats[i].suffix = v; }, 'e.g. L+'),
+      lbl('Label', s.label, v => { D.stats[i].label = v; }),
+    ], () => { D.stats.splice(i, 1); save(); renderStats(); }, `Stat ${i+1}`));
+  });
+}
+function addStat() {
+  D.stats = D.stats || [];
+  D.stats.push({ value: 0, suffix: '+', label: 'New Stat' });
+  save(); renderStats();
+}
+
+// ── Packages ──
+function renderPkgs() {
+  const w = document.getElementById('pkgRows'); w.innerHTML = '';
+  (D.packages || []).forEach((p, i) => {
+    w.appendChild(wrap([
+      lbl('Name', p.name, v => { D.packages[i].name = v; }),
+      lbl('Price/sq.ft (blank = Custom quote)', p.pricePerSqft, v => { D.packages[i].pricePerSqft = v ? Number(v) : null; }),
+      chk('Featured (Most Popular badge)', p.featured, v => { D.packages[i].featured = v; }),
+      ta('Features (one per line)', (p.features || []).join('\n'), v => { D.packages[i].features = v.split('\n').filter(Boolean); }),
+    ], () => { D.packages.splice(i, 1); save(); renderPkgs(); }, p.name || `Package ${i+1}`));
+  });
+}
+function addPkg() {
+  D.packages = D.packages || [];
+  D.packages.push({ name: 'New Package', pricePerSqft: 2000, featured: false, features: [] });
+  save(); renderPkgs();
+}
+function renderRates() {
+  const est = D.estimator || {};
+  ['rateFields','locFields','matFields'].forEach(id => { const el = document.getElementById(id); if (el) el.innerHTML = ''; });
+  Object.entries(est.baseRate || {}).forEach(([k, v]) => {
+    const lbel = document.createElement('label');
+    lbel.innerHTML = `${k.charAt(0).toUpperCase()+k.slice(1)}<br/><input class="input" type="number" value="${v}"/>`;
+    lbel.querySelector('input').addEventListener('input', function() { D.estimator.baseRate[k] = Number(this.value); save(); });
+    document.getElementById('rateFields').appendChild(lbel);
+  });
+  Object.entries(est.locationMultiplier || {}).forEach(([k, v]) => {
+    const lbel = document.createElement('label');
+    lbel.innerHTML = `${k}<br/><input class="input" type="number" step="0.01" value="${v}"/>`;
+    lbel.querySelector('input').addEventListener('input', function() { D.estimator.locationMultiplier[k] = Number(this.value); save(); });
+    document.getElementById('locFields').appendChild(lbel);
+  });
+  Object.entries(est.materialMultiplier || {}).forEach(([k, v]) => {
+    const lbel = document.createElement('label');
+    lbel.innerHTML = `${k}<br/><input class="input" type="number" step="0.01" value="${v}"/>`;
+    lbel.querySelector('input').addEventListener('input', function() { D.estimator.materialMultiplier[k] = Number(this.value); save(); });
+    document.getElementById('matFields').appendChild(lbel);
+  });
+  const bf = document.getElementById('brandListFields'); bf.innerHTML = '';
+  Object.entries(est.brands || {}).forEach(([k, arr]) => {
+    const lbel = document.createElement('label');
+    lbel.className = 'full';
+    lbel.innerHTML = `${k.charAt(0).toUpperCase()+k.slice(1)} brands (comma-separated)<br/><input class="input" value="${e((arr||[]).join(', '))}"/>`;
+    lbel.querySelector('input').addEventListener('input', function() { D.estimator.brands[k] = this.value.split(',').map(s=>s.trim()).filter(Boolean); save(); });
+    bf.appendChild(lbel);
+  });
+}
+
+// ── Team ──
+function renderTeam() {
+  const w = document.getElementById('teamRows'); w.innerHTML = '';
+  (D.team || []).forEach((m, i) => {
+    w.appendChild(wrap([
+      lbl('Name', m.name, v => { D.team[i].name = v; }),
+      lbl('Role / Title', m.role, v => { D.team[i].role = v; }),
+      lbl('Experience', m.exp, v => { D.team[i].exp = v; }, '10+ Years'),
+      lbl('Photo path', m.photo, v => { D.team[i].photo = v || null; }, 'images/team/name.jpg'),
+    ], () => { D.team.splice(i, 1); save(); renderTeam(); }, m.name || `Member ${i+1}`));
+  });
+}
+function addTeam() {
+  D.team = D.team || [];
+  D.team.push({ name: 'New Member', role: 'Role', exp: '', photo: null });
+  save(); renderTeam();
+}
+
+// ── Brands ──
+function renderBrands() {
+  const w = document.getElementById('brandRows'); w.innerHTML = '';
+  (D.trustedBrands || []).forEach((b, i) => {
+    w.appendChild(wrap([
+      lbl('Brand name', b.name, v => { D.trustedBrands[i].name = v; }),
+      lbl('Logo path', b.logo, v => { D.trustedBrands[i].logo = v || null; }, 'images/brands/name.png'),
+    ], () => { D.trustedBrands.splice(i, 1); save(); renderBrands(); }, b.name));
+  });
+}
+function addBrand() {
+  D.trustedBrands = D.trustedBrands || [];
+  D.trustedBrands.push({ name: 'New Brand', logo: null });
+  save(); renderBrands();
+}
+
+// ── Partners ──
+function renderPartners() {
+  const w = document.getElementById('partnerRows'); w.innerHTML = '';
+  (D.workingPartners || []).forEach((p, i) => {
+    w.appendChild(wrap([
+      lbl('Partner name', p.name, v => { D.workingPartners[i].name = v; }),
+      lbl('Type / Specialty', p.type, v => { D.workingPartners[i].type = v; }),
+      lbl('Logo path (optional)', p.logo, v => { D.workingPartners[i].logo = v || null; }, 'images/partners/name.png'),
+    ], () => { D.workingPartners.splice(i, 1); save(); renderPartners(); }, p.name));
+  });
+}
+function addPartner() {
+  D.workingPartners = D.workingPartners || [];
+  D.workingPartners.push({ name: 'New Partner', type: 'Specialty', logo: null });
+  save(); renderPartners();
+}
+
+// ── Clients ──
+function renderClients() {
+  const w = document.getElementById('clientRows'); w.innerHTML = '';
+  (D.clients || []).forEach((c, i) => {
+    w.appendChild(wrap([
+      lbl('Client name', c.name, v => { D.clients[i].name = v; }),
+      lbl('Logo path', c.logo, v => { D.clients[i].logo = v || null; }, 'images/clients/name.png'),
+    ], () => { D.clients.splice(i, 1); save(); renderClients(); }, c.name));
+  });
+}
+function addClient() {
+  D.clients = D.clients || [];
+  D.clients.push({ name: 'New Client', logo: null });
+  save(); renderClients();
+}
+
+// Auto-init if already logged in
+if (sessionStorage.getItem('bl_adm') === '1') init();
+</script>
+</body>
+</html>

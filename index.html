@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BigLand Construction · Premium Home Builders in India</title>
+<meta name="description" content="BigLand Construction — Building Dreams, Crafting Legacies. Premium construction with transparent pricing, 10-year warranty, and 470+ quality checks."/>
+<link rel="canonical" href="https://www.biglandconstruction.com/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="BigLand Construction · Premium Home Builders"/>
+<meta property="og:description" content="Building Dreams, Crafting Legacies. World-class luxury construction with premium materials and transparent processes."/>
+<meta property="og:url" content="https://www.biglandconstruction.com/"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"GeneralContractor","name":"BigLand Construction","telephone":"+91-7505-205-205","url":"https://www.biglandconstruction.com/","areaServed":"IN","priceRange":"$$$","address":{"@type":"PostalAddress","addressCountry":"IN"}}
+</script>
+</head>
+<body>
+
+<!-- Page Loader -->
+<div id="page-loader">
+  <div class="loader-logo">Big<span>Land</span></div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+</div>
+
+<a href="#main" class="skip-link" onclick="document.getElementById('main').focus();return false">Skip to content</a>
+
+<!-- Navbar -->
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Big<span>Land</span><small>Construction</small></a>
+    <ul class="nav-links" id="navLinks">
+      <li><button onclick="scrollToId('quote')">Get Quote</button></li>
+      <li><button onclick="scrollToId('services')">Services</button></li>
+      <li><button onclick="scrollToId('why-us')">Why Us</button></li>
+      <li><button onclick="scrollToId('contact')">Contact</button></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="estimate.html" class="nav-cta">Free Estimate</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     1. HERO SECTION
+═══════════════════════════════════════════════════════════════ -->
+<section class="hero" aria-labelledby="hero-title" id="hero">
+  <div class="hero-layout">
+
+    <!-- LEFT: Text Content -->
+    <div class="hero-left">
+      <p class="hero-eyebrow">👑 Premium Home Construction</p>
+      <h1 id="hero-title">Construct Your<br/><span class="gold-text">Dream Home</span></h1>
+      <p class="hero-slogan">"Building Dreams, Crafting Legacies"</p>
+      <p>World-class construction with premium materials, transparent pricing, and a 10-year structural warranty. Your vision, built with precision.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" onclick="scrollToId('contact')">📐 Get Free Estimate</button>
+        <a href="estimate.html" class="btn btn-outline-light">🧮 Cost Calculator</a>
+      </div>
+      <ul class="stats-row" id="heroStats"></ul>
+    </div>
+
+    <!-- RIGHT: Animated Construction Scene -->
+    <div class="hero-right">
+      <svg class="hero-scene" viewBox="0 0 520 580" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="sceneGlow" cx="50%" cy="60%" r="55%">
+            <stop offset="0%" stop-color="#b8953a" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="#b8953a" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="softglow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+
+        <!-- Ground glow -->
+        <ellipse cx="260" cy="535" rx="200" ry="28" fill="rgba(184,149,58,0.12)"/>
+        <rect x="60" cy="2" y="530" width="400" height="2" rx="1" fill="var(--accent)" opacity="0.25"/>
+
+        <!-- BUILDINGS — rising with staggered delay -->
+        <!-- B1 short left -->
+        <rect class="bld" x="62" y="430" width="54" height="100" rx="2" style="animation-delay:.05s"/>
+        <!-- B2 tall left-center -->
+        <rect class="bld" x="128" y="310" width="58" height="220" rx="2" style="animation-delay:.22s"/>
+        <!-- B3 medium center-left -->
+        <rect class="bld" x="198" y="400" width="46" height="130" rx="2" style="animation-delay:.40s"/>
+        <!-- B4 TALLEST center — in-progress building -->
+        <rect class="bld" x="256" y="240" width="68" height="290" rx="2" style="animation-delay:.58s"/>
+        <!-- B5 medium center-right -->
+        <rect class="bld" x="336" y="380" width="50" height="150" rx="2" style="animation-delay:.76s"/>
+        <!-- B6 tall right -->
+        <rect class="bld" x="398" y="330" width="56" height="200" rx="2" style="animation-delay:.94s"/>
+
+        <!-- Windows lighting up on tall buildings -->
+        <rect class="bld-win" x="138" y="340" width="12" height="10" rx="1"/>
+        <rect class="bld-win" x="156" y="340" width="12" height="10" rx="1" style="animation-delay:.7s"/>
+        <rect class="bld-win" x="138" y="362" width="12" height="10" rx="1" style="animation-delay:1.4s"/>
+        <rect class="bld-win" x="156" y="362" width="12" height="10" rx="1" style="animation-delay:.3s"/>
+        <rect class="bld-win" x="138" y="384" width="12" height="10" rx="1" style="animation-delay:1.9s"/>
+        <rect class="bld-win" x="268" y="270" width="12" height="10" rx="1" style="animation-delay:.5s"/>
+        <rect class="bld-win" x="288" y="270" width="12" height="10" rx="1" style="animation-delay:1.2s"/>
+        <rect class="bld-win" x="268" y="295" width="12" height="10" rx="1" style="animation-delay:.9s"/>
+        <rect class="bld-win" x="408" y="358" width="12" height="10" rx="1" style="animation-delay:.4s"/>
+        <rect class="bld-win" x="425" y="358" width="12" height="10" rx="1" style="animation-delay:1.6s"/>
+
+        <!-- Scaffolding on the tallest in-progress building -->
+        <line class="bld-line" x1="256" y1="275" x2="324" y2="275"/>
+        <line class="bld-line" x1="256" y1="315" x2="324" y2="315"/>
+        <line class="bld-line" x1="256" y1="355" x2="324" y2="355"/>
+        <line class="bld-line" x1="256" y1="395" x2="324" y2="395"/>
+        <line class="bld-line" x1="256" y1="435" x2="324" y2="435"/>
+        <line class="bld-line" x1="256" y1="475" x2="324" y2="475"/>
+        <!-- Vertical scaffolding poles -->
+        <line class="bld-line" x1="275" y1="240" x2="275" y2="530" stroke-dasharray="4 6"/>
+        <line class="bld-line" x1="306" y1="240" x2="306" y2="530" stroke-dasharray="4 6"/>
+
+        <!-- MAIN CRANE (tall) on tallest building -->
+        <g>
+          <!-- Mast -->
+          <rect class="crane-mast fi" x="286" y="80" width="7" height="165" rx="1"/>
+          <!-- Cross arm -->
+          <g class="crane-arm-group">
+            <rect x="200" y="75" width="200" height="7" rx="2" fill="var(--accent)"/>
+            <rect x="279" y="75" width="7" height="20" rx="1" fill="var(--accent)"/>
+            <!-- Counter-weight box -->
+            <rect x="196" y="76" width="18" height="14" rx="2" fill="var(--accent)" opacity="0.7"/>
+          </g>
+          <!-- Hook cable -->
+          <line class="crane-hook" x1="235" y1="84" x2="235" y2="140"/>
+          <!-- Hook -->
+          <path class="crane-hook" d="M229,140 Q229,150 235,150 Q241,150 241,140" fill="none"/>
+          <!-- Sparks at hook -->
+          <circle class="spark" cx="235" cy="155" r="4.5" filter="url(#softglow)"/>
+          <circle class="spark" cx="245" cy="163" r="3" style="animation-delay:.55s"/>
+          <circle class="spark" cx="225" cy="160" r="2.5" style="animation-delay:1.1s"/>
+          <circle class="spark" cx="240" cy="148" r="2" style="animation-delay:1.7s"/>
+        </g>
+
+        <!-- SECOND smaller CRANE on right building -->
+        <g class="crane2">
+          <rect class="crane-mast" x="418" y="200" width="5" height="130" rx="1"/>
+          <g class="crane-arm-group">
+            <rect x="370" y="196" width="110" height="5" rx="1" fill="var(--accent)"/>
+            <rect x="413" y="196" width="5" height="14" rx="1" fill="var(--accent)"/>
+          </g>
+          <line class="crane-hook" x1="385" y1="202" x2="385" y2="240"/>
+          <circle class="spark" cx="385" cy="245" r="3" style="animation-delay:.8s"/>
+        </g>
+
+        <!-- TRUCK driving on ground -->
+        <g class="truck" transform="translate(70,504)">
+          <rect width="52" height="24" rx="3" fill="rgba(232,213,163,0.1)" stroke="var(--accent)" stroke-width="1.2"/>
+          <rect x="-16" y="7" width="18" height="15" rx="2" fill="rgba(232,213,163,0.1)" stroke="var(--accent)" stroke-width="1.2"/>
+          <circle cx="4" cy="27" r="5" fill="var(--accent)" opacity="0.85"/>
+          <circle cx="40" cy="27" r="5" fill="var(--accent)" opacity="0.85"/>
+          <!-- Headlight -->
+          <circle cx="52" cy="8" r="3" fill="var(--accent-light)" opacity="0.7"/>
+        </g>
+
+        <!-- Dust puffs -->
+        <circle class="dust" cx="130" cy="526" r="5" style="animation-delay:.4s"/>
+        <circle class="dust" cx="290" cy="528" r="7" style="animation-delay:1.8s"/>
+        <circle class="dust" cx="440" cy="526" r="5" style="animation-delay:2.9s"/>
+
+        <!-- Ambient glow -->
+        <rect x="0" y="0" width="520" height="580" fill="url(#sceneGlow)" style="animation:glow-pulse 7s ease-in-out infinite"/>
+      </svg>
+    </div>
+
+  </div>
+  <button class="scroll-cue" onclick="scrollToId('quote')" aria-label="Scroll down">↓ Scroll</button>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider" style="background:var(--dark);margin-top:-2px"><svg viewBox="0 0 1200 50" preserveAspectRatio="none" height="50"><path d="M0,0 C300,50 900,0 1200,40 L1200,50 L0,50 Z" fill="var(--bg)"/></svg></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     2. FREE QUOTE / ESTIMATE SECTION
+═══════════════════════════════════════════════════════════════ -->
+<section id="quote" aria-labelledby="quote-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow-sm">Instant Quotation</span>
+      <h2 id="quote-title">Get Your <span>Free Construction</span> Quote</h2>
+      <p>Choose your package, tell us your plot size, and we'll give you an instant indicative estimate — no obligations.</p>
+    </div>
+    <div class="grid grid-4" id="packagesGrid"></div>
+    <div style="text-align:center;margin-top:28px" class="reveal">
+      <a href="estimate.html" class="btn btn-primary" style="font-size:15px;padding:14px 36px">
+        🧮 Open Detailed Estimator →
+      </a>
+      <p style="color:var(--muted);font-size:13px;margin-top:10px">With brand selection, material breakdown & PDF download</p>
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider" style="background:var(--bg)"><svg viewBox="0 0 1200 50" preserveAspectRatio="none" height="50"><path d="M0,30 C400,0 800,50 1200,20 L1200,50 L0,50 Z" fill="var(--surface)"/></svg></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     3. SERVICES WE OFFER
+═══════════════════════════════════════════════════════════════ -->
+<section id="services" class="bordered" aria-labelledby="services-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow-sm">What We Build</span>
+      <h2 id="services-title">Services <span>We Offer</span></h2>
+      <p>From laying the foundation to the final finishing touch — we handle it all.</p>
+    </div>
+    <div class="grid grid-3" id="servicesGrid"></div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider" style="background:var(--surface)"><svg viewBox="0 0 1200 50" preserveAspectRatio="none" height="50"><path d="M0,20 C300,50 900,0 1200,30 L1200,50 L0,50 Z" fill="var(--bg)"/></svg></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     4. WHY CHOOSE US
+═══════════════════════════════════════════════════════════════ -->
+<section id="why-us" aria-labelledby="why-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow-sm">Why BigLand</span>
+      <h2 id="why-title">Why Choose <span>Us</span></h2>
+    </div>
+    <div class="grid grid-4">
+      <div class="card why-card reveal" data-tooltip="Structural warranty on every project"><span class="why-icon">🛡️</span><h3>10-Year Warranty</h3><p>Backed by 470+ quality checks at every stage of construction.</p></div>
+      <div class="card why-card reveal" data-tooltip="On schedule, every time"><span class="why-icon">⏱️</span><h3>On-Time Delivery</h3><p>Fixed timelines with weekly progress reports — no surprises.</p></div>
+      <div class="card why-card reveal" data-tooltip="What you see is what you pay"><span class="why-icon">💰</span><h3>Transparent Pricing</h3><p>No hidden costs. Every single line item is explained upfront.</p></div>
+      <div class="card why-card reveal" data-tooltip="One call away, always"><span class="why-icon">👤</span><h3>Dedicated Manager</h3><p>One point of contact from foundation to handover.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── 4A. EXPERT TEAM ───── -->
+<section id="team" class="bordered" aria-labelledby="team-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow-sm">Expert Team</span>
+      <h2 id="team-title">The People <span>Behind BigLand</span></h2>
+      <p>Managed via <a href="admin.html" style="color:var(--accent)">admin panel</a> — add your real team names, roles and photos there.</p>
+    </div>
+    <div class="grid grid-4" id="teamGrid"></div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider" style="background:var(--surface)"><svg viewBox="0 0 1200 50" preserveAspectRatio="none" height="50"><path d="M0,40 C400,0 800,50 1200,10 L1200,50 L0,50 Z" fill="var(--dark2)"/></svg></div>
+
+<!-- ───── 4B. TRUSTED BRANDS ───── -->
+<section id="brands" class="dark-section" aria-labelledby="brands-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow-sm" style="color:var(--accent-light)">Materials We Trust</span>
+      <h2 id="brands-title" style="color:#fff">Our Trusted <span>Brands</span></h2>
+      <p class="muted">Only premium, certified brands used in every BigLand project.</p>
+    </div>
+    <div class="marquee-outer reveal">
+      <div class="marquee-track" id="brandsTrack"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── 4C. WORKING PARTNERS ───── -->
+<section id="partners" class="dark-section" style="padding-top:40px" aria-labelledby="partners-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow-sm" style="color:var(--accent-light)">Collaboration</span>
+      <h2 id="partners-title" style="color:#fff">Our Working <span>Partners</span></h2>
+      <p class="muted">Industry-leading partners who ensure quality at every stage.</p>
+    </div>
+    <div class="grid grid-4" id="partnersGrid"></div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider" style="background:var(--dark2)"><svg viewBox="0 0 1200 50" preserveAspectRatio="none" height="50"><path d="M0,10 C300,50 900,0 1200,40 L1200,50 L0,50 Z" fill="var(--bg)"/></svg></div>
+
+<!-- ───── 4D. TRUSTED CLIENTS ───── -->
+<section id="clients" aria-labelledby="clients-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow-sm">Our Clients</span>
+      <h2 id="clients-title">Trusted by <span>Our Clients</span></h2>
+      <p>Families and businesses who trusted us with their most important investment.</p>
+    </div>
+    <div class="marquee-outer reveal">
+      <div class="marquee-track reverse" id="clientsTrack"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider" style="background:var(--bg)"><svg viewBox="0 0 1200 50" preserveAspectRatio="none" height="50"><path d="M0,30 C300,0 900,50 1200,20 L1200,50 L0,50 Z" fill="var(--dark)"/></svg></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     5. CONSTRUCTION VIDEO
+═══════════════════════════════════════════════════════════════ -->
+<section class="video-section" id="video" aria-labelledby="video-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow-sm" style="color:var(--accent-light)">See Us In Action</span>
+      <h2 id="video-title" style="color:#fff">Our <span>Construction</span> Process</h2>
+      <p style="color:rgba(255,255,255,0.6)">Watch how we turn your vision into reality — from foundation to finishing.</p>
+    </div>
+    <div class="video-wrap reveal" id="videoWrap">
+      <!-- Video URL loaded from data.json -->
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider" style="background:var(--dark)"><svg viewBox="0 0 1200 50" preserveAspectRatio="none" height="50"><path d="M0,20 C400,50 800,0 1200,35 L1200,50 L0,50 Z" fill="var(--bg)"/></svg></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     6. CONTACT + SOCIAL
+═══════════════════════════════════════════════════════════════ -->
+<section id="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="contact-box">
+      <div class="contact-info reveal-l">
+        <span class="eyebrow-sm">Start Your Journey</span>
+        <h2 id="contact-title">Let's Build Your <span class="gold-text">Dream Home</span></h2>
+        <p>Get a free consultation and estimate. Our team will respond within 20 minutes.</p>
+        <a href="tel:+917505205205" class="contact-link phone" id="cPhone">📞 +91 7505 205 205</a>
+        <a href="https://wa.me/917505205205" target="_blank" rel="noreferrer" class="contact-link">💬 Chat on WhatsApp</a>
+        <a href="mailto:info@biglandconstruction.com" class="contact-link" id="cEmail">✉️ info@biglandconstruction.com</a>
+        <a href="#" class="contact-link" id="cAddress">📍 Your City, India</a>
+        <div class="social-row" id="socialRow"></div>
+      </div>
+      <div class="reveal-r">
+        <form id="contactForm" novalidate>
+          <div class="field">
+            <label for="name">Full name</label>
+            <input id="name" class="input" required minlength="2" placeholder="Rajesh Kumar"/>
+            <p class="field-error" id="nameErr">Enter your full name</p>
+          </div>
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input id="phone" type="tel" class="input" required placeholder="+91 98765 43210"/>
+            <p class="field-error" id="phoneErr">Enter a valid phone number</p>
+          </div>
+          <div class="field">
+            <label for="email">Email (optional)</label>
+            <input id="email" type="email" class="input" placeholder="you@example.com"/>
+          </div>
+          <div class="field">
+            <label for="service">Service interested in</label>
+            <select id="service" class="input">
+              <option value="">— Select —</option>
+              <option>Residential Construction</option>
+              <option>Commercial Construction</option>
+              <option>Interior Design</option>
+              <option>Renovation</option>
+              <option>Architectural Design</option>
+              <option>Project Management</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Tell us about your project</label>
+            <textarea id="message" class="input" rows="3" placeholder="Plot size, location, any special requirements..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" id="contactSubmit">Get Free Estimate</button>
+        </form>
+        <div id="contactSuccess" class="success-box hidden">
+          <div class="check">✅</div>
+          <p>Opened on WhatsApp.</p>
+          <p>Send the pre-filled message — our team responds within 20 minutes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Big<span>Land</span><small>Construction</small></a>
+        <p id="footerTagline">Building Dreams, Crafting Legacies. Premium construction with transparent pricing and lifetime trust.</p>
+        <div class="social-row" id="footerSocial"></div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><button onclick="scrollToId('quote')">Get Free Quote</button></li>
+          <li><button onclick="scrollToId('services')">Services</button></li>
+          <li><button onclick="scrollToId('team')">Our Team</button></li>
+          <li><button onclick="scrollToId('contact')">Contact Us</button></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="estimate.html">Cost Estimator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul id="footerServices"></ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p id="fPhone">📞 +91 7505 205 205</p>
+        <p id="fEmail">✉️ info@biglandconstruction.com</p>
+        <p id="fAddress">📍 Your City, India</p>
+        <p><a href="https://wa.me/917505205205" target="_blank" rel="noreferrer" style="color:rgba(255,255,255,0.65)">💬 WhatsApp Us</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> BigLand Construction. All rights reserved.</span>
+      <div style="display:flex;gap:16px">
+        <a href="admin.html" style="color:inherit">Admin</a>
+        <a href="careers.html" style="color:inherit">Careers</a>
+      </div>
+      <div class="footer-credit">Developed by JSPN<br/>Built with HTML · CSS · JavaScript</div>
+    </div>
+  </div>
+</footer>
+
+<script src="data-loader.js"></script>
+<script src="script.js"></script>
+<script>
+const inrFmt = new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0});
+
+loadSiteData().then((D) => {
+  // ── Company info ──
+  const co = D.company || {};
+  const WA = (co.whatsapp || '917505205205');
+  if (co.phone) { document.getElementById('cPhone').textContent = '📞 ' + co.phone; document.getElementById('cPhone').href = 'tel:' + co.phone.replace(/\s/g,''); }
+  if (co.email) { document.getElementById('cEmail').textContent = '✉️ ' + co.email; document.getElementById('cEmail').href = 'mailto:' + co.email; }
+  if (co.address) document.getElementById('cAddress').textContent = '📍 ' + co.address;
+  if (co.phone) document.getElementById('fPhone').textContent = '📞 ' + co.phone;
+  if (co.email) document.getElementById('fEmail').textContent = '✉️ ' + co.email;
+  if (co.address) document.getElementById('fAddress').textContent = '📍 ' + co.address;
+  if (co.slogan) document.getElementById('footerTagline').textContent = co.slogan + '. Premium construction with transparent pricing.';
+
+  // Social icons
+  const SOCIAL_ICONS = {facebook:'🔵',instagram:'📸',youtube:'▶️',linkedin:'💼'};
+  ['socialRow','footerSocial'].forEach((id) => {
+    const row = document.getElementById(id);
+    if (!row) return;
+    Object.entries(co.social || {}).forEach(([k,v]) => {
+      if (!v || v.includes('example')) return;
+      const a = document.createElement('a');
+      a.href = v; a.target = '_blank'; a.rel = 'noreferrer';
+      a.className = 'social-btn'; a.setAttribute('aria-label', k);
+      a.title = k;
+      a.textContent = SOCIAL_ICONS[k] || '🔗';
+      row.appendChild(a);
+    });
+  });
+
+  // Video
+  if (co.videoUrl) {
+    const vw = document.getElementById('videoWrap');
+    if (vw) vw.innerHTML = `<iframe src="${co.videoUrl}" title="BigLand Construction Video" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+  }
+
+  // ── Stats ──
+  const statsRow = document.getElementById('heroStats');
+  (D.stats || []).forEach((s) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<div class="stat-value"><span class="counter" data-target="${s.value}">0</span>${s.suffix}</div><div class="stat-label">${s.label}</div>`;
+    statsRow.appendChild(li);
+  });
+
+  // ── Packages ──
+  const pg = document.getElementById('packagesGrid');
+  (D.packages || []).forEach((p) => {
+    const el = document.createElement('div');
+    el.className = 'card reveal' + (p.featured ? ' featured' : '');
+    const priceHtml = p.pricePerSqft ? `${inrFmt.format(p.pricePerSqft)} <small>/ sq.ft.</small>` : `Custom <small>quote</small>`;
+    el.innerHTML = `
+      ${p.featured ? '<span class="badge">Most Popular</span>' : ''}
+      <h3 style="margin-bottom:2px;font-size:19px">${p.name}</h3>
+      <div class="price">${priceHtml}</div>
+      <ul class="feature-list">${(p.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
+      <a href="estimate.html" class="btn ${p.featured?'btn-primary':'btn-outline'} btn-block">Get Estimate</a>`;
+    pg.appendChild(el);
+  });
+
+  // ── Services ──
+  const sg = document.getElementById('servicesGrid');
+  (D.services || []).forEach((s) => {
+    const el = document.createElement('article');
+    el.className = 'card service-card reveal';
+    el.innerHTML = `
+      <div class="img-wrap">
+        <img src="${s.img}" alt="${s.title}" loading="lazy" width="600" height="190"/>
+        <div class="service-icon">${s.icon || '🏗️'}</div>
+      </div>
+      <div class="body">
+        <h3>${s.title}</h3>
+        <p>${s.desc}</p>
+        <button class="link-btn" onclick="scrollToId('contact')">Enquire Now →</button>
+      </div>`;
+    sg.appendChild(el);
+  });
+
+  // Footer services
+  const fs = document.getElementById('footerServices');
+  (D.services || []).slice(0,5).forEach((s) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<button onclick="scrollToId('services')">${s.title}</button>`;
+    fs.appendChild(li);
+  });
+
+  // ── Team ──
+  const tg = document.getElementById('teamGrid');
+  (D.team || []).forEach((m) => {
+    const initials = m.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    const el = document.createElement('div');
+    el.className = 'card team-card reveal';
+    el.innerHTML = (m.photo ? `<img class="team-photo" src="${m.photo}" alt="${m.name}" loading="lazy"/>` : `<div class="team-photo">${initials}</div>`)
+      + `<h3>${m.name}</h3><p class="role">${m.role}</p><p class="exp">${m.exp || ''}</p>`;
+    tg.appendChild(el);
+  });
+
+  // ── Trusted Brands marquee ──
+  const bt = document.getElementById('brandsTrack');
+  const brands = D.trustedBrands || [];
+  [...brands,...brands].forEach((b) => {
+    const el = document.createElement('div');
+    el.className = 'marquee-item';
+    el.innerHTML = b.logo ? `<img src="${b.logo}" alt="${b.name}" loading="lazy"/>` : b.name;
+    bt.appendChild(el);
+  });
+
+  // ── Working Partners ──
+  const partnersGrid = document.getElementById('partnersGrid');
+  const PARTNER_ICONS = ['🏗️','⚡','🛋️','⚖️','📐','🔧'];
+  (D.workingPartners || []).forEach((p, i) => {
+    const el = document.createElement('div');
+    el.className = 'card partner-card reveal';
+    el.innerHTML = `<div class="partner-badge">${PARTNER_ICONS[i % PARTNER_ICONS.length]}</div><h3>${p.name}</h3><p class="sub">${p.type}</p>`;
+    partnersGrid.appendChild(el);
+  });
+
+  // ── Trusted Clients marquee ──
+  const ct = document.getElementById('clientsTrack');
+  const clients = D.clients || [];
+  [...clients,...clients].forEach((c) => {
+    const el = document.createElement('div');
+    el.className = 'marquee-item';
+    el.innerHTML = c.logo ? `<img src="${c.logo}" alt="${c.name}" loading="lazy"/>` : c.name;
+    ct.appendChild(el);
+  });
+
+  observeReveal();
+
+  // ── Contact form → WhatsApp ──
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name');
+    const phone = document.getElementById('phone');
+    let valid = true;
+    if (name.value.trim().length < 2) { document.getElementById('nameErr').classList.add('show'); valid = false; }
+    else document.getElementById('nameErr').classList.remove('show');
+    if (!/^[0-9+\s\-]{10,}$/.test(phone.value.trim())) { document.getElementById('phoneErr').classList.add('show'); valid = false; }
+    else document.getElementById('phoneErr').classList.remove('show');
+    if (!valid) return;
+    const svc = document.getElementById('service').value;
+    const msg = document.getElementById('message').value.trim();
+    const text = `New enquiry from BigLand website:\nName: ${name.value.trim()}\nPhone: ${phone.value.trim()}`
+      + (document.getElementById('email').value ? `\nEmail: ${document.getElementById('email').value}` : '')
+      + (svc ? `\nService: ${svc}` : '')
+      + (msg ? `\nMessage: ${msg}` : '');
+    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(text)}`, '_blank');
+    form.classList.add('hidden');
+    document.getElementById('contactSuccess').classList.remove('hidden');
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+});
+</script>
+</body>
+</html>

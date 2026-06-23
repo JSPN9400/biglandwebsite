@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Careers · BigLand Construction</title>
+<meta name="description" content="Join BigLand Construction — build your career with India's premium construction company. Apply for open positions or submit your resume."/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div id="page-loader"><div class="loader-logo">Big<span>Land</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div></div>
+<a href="#main" class="skip-link" onclick="document.getElementById('main').focus();return false">Skip to content</a>
+
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Big<span>Land</span><small>Construction</small></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="estimate.html" class="nav-cta">Free Estimate</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- Hero -->
+<section style="background:linear-gradient(135deg,var(--dark) 0%,var(--dark2) 100%);padding:140px 0 80px;color:#fff;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(184,149,58,0.18),transparent 65%);pointer-events:none"></div>
+  <div class="container">
+    <div class="reveal-l" style="max-width:600px">
+      <span class="eyebrow-sm" style="color:var(--accent-light)">Join Our Team</span>
+      <h1 style="font-size:clamp(32px,5vw,52px);margin:10px 0 16px;color:#fff">Build Your Career <span class="gold-text">With BigLand</span></h1>
+      <p style="color:rgba(255,255,255,0.75);font-size:16px;max-width:460px;margin-bottom:32px">We're always looking for passionate, skilled professionals to join our growing family. If you love building dreams, you belong here.</p>
+      <a href="#open-roles" class="btn btn-primary" onclick="scrollToId('open-roles')">See Open Positions →</a>
+      <a href="#apply" class="btn btn-outline-light" style="margin-left:12px" onclick="scrollToId('apply')">Apply Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider" style="background:var(--dark2)"><svg viewBox="0 0 1200 50" preserveAspectRatio="none" height="50"><path d="M0,0 C400,50 800,0 1200,40 L1200,50 L0,50 Z" fill="var(--bg)"/></svg></div>
+
+<!-- Why Work With Us -->
+<section style="padding:72px 0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow-sm">Why Join Us</span>
+      <h2>Why Work at <span>BigLand</span></h2>
+    </div>
+    <div class="grid grid-4">
+      <div class="card why-card reveal"><span class="why-icon">🚀</span><h3>Growth Opportunities</h3><p>Fast-track your career with hands-on projects and regular skill development programs.</p></div>
+      <div class="card why-card reveal"><span class="why-icon">💰</span><h3>Competitive Pay</h3><p>Market-leading salaries with performance bonuses and timely increments.</p></div>
+      <div class="card why-card reveal"><span class="why-icon">🏗️</span><h3>Real Impact</h3><p>Work on iconic residential and commercial projects that change people's lives.</p></div>
+      <div class="card why-card reveal"><span class="why-icon">🤝</span><h3>Great Culture</h3><p>Collaborative, respectful environment where every voice matters.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider" style="background:var(--bg)"><svg viewBox="0 0 1200 50" preserveAspectRatio="none" height="50"><path d="M0,30 C300,0 900,50 1200,20 L1200,50 L0,50 Z" fill="var(--surface)"/></svg></div>
+
+<!-- Open Roles -->
+<section id="open-roles" class="bordered" style="padding:72px 0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow-sm">Open Positions</span>
+      <h2>Current <span>Openings</span></h2>
+      <p>Don't see your role? Apply below and we'll keep your profile on file.</p>
+    </div>
+    <div class="grid grid-3" id="jobsGrid">
+      <!-- Rendered by JS below -->
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider" style="background:var(--surface)"><svg viewBox="0 0 1200 50" preserveAspectRatio="none" height="50"><path d="M0,20 C400,0 800,50 1200,30 L1200,50 L0,50 Z" fill="var(--bg)"/></svg></div>
+
+<!-- Google Form Apply Section -->
+<section id="apply" style="padding:80px 0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow-sm">Apply Now</span>
+      <h2>Submit Your <span>Application</span></h2>
+      <p>Fill out the form below with your details and resume link. We review every application personally.</p>
+    </div>
+
+    <div style="max-width:780px;margin:0 auto" class="reveal">
+      <!-- ══════════════════════════════════════════════════════════
+           HOW TO REPLACE WITH YOUR REAL GOOGLE FORM:
+           1. Go to forms.google.com → Create a new form
+           2. Add fields: Name, Phone, Email, Position Applying For,
+              Years Experience, Resume Link (Google Drive / LinkedIn)
+           3. Click Send → Embed (</>) → Copy the <iframe> src URL
+           4. Replace the src="..." below with your copied URL
+           5. Delete the placeholder notice div below that
+      ══════════════════════════════════════════════════════════ -->
+
+      <!-- PLACEHOLDER NOTICE (delete after adding real Google Form) -->
+      <div id="formPlaceholder" style="background:var(--accent-soft);border:1.5px dashed var(--accent-light);border-radius:12px;padding:36px 28px;text-align:center">
+        <div style="font-size:32px;margin-bottom:12px">📋</div>
+        <h3 style="font-size:18px;margin-bottom:8px">Google Form Goes Here</h3>
+        <p style="color:var(--muted);font-size:14px;margin-bottom:20px">
+          Replace this placeholder with your real Google Form iframe.<br/>
+          Instructions are in the HTML comment just above this block.
+        </p>
+        <p style="font-size:13px;color:var(--muted)">
+          <strong>Quick setup:</strong> forms.google.com → New form → Add your fields → Send → Embed → Copy iframe src → paste below
+        </p>
+      </div>
+
+      <!-- REAL GOOGLE FORM IFRAME — uncomment and add your src= URL -->
+      <!--
+      <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08)">
+        <iframe
+          src="YOUR_GOOGLE_FORM_EMBED_URL_HERE"
+          width="100%"
+          height="900"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="BigLand Construction Job Application"
+          style="display:block"
+          loading="lazy">
+          Loading…
+        </iframe>
+      </div>
+      -->
+
+      <!-- FALLBACK WhatsApp Apply (always visible as backup) -->
+      <div style="margin-top:28px;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-align:center">
+        <p style="color:var(--muted);font-size:14px;margin-bottom:16px">Or send your resume directly via WhatsApp — our HR team responds within 24 hours.</p>
+        <a id="waApplyBtn" href="https://wa.me/917505205205?text=Hi%2C%20I%20would%20like%20to%20apply%20for%20a%20position%20at%20BigLand%20Construction.%20Please%20find%20my%20details%3A" target="_blank" rel="noreferrer" class="btn btn-primary">
+          💬 Apply via WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer" style="padding:36px 0">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> BigLand Construction. All rights reserved.</span>
+      <div style="display:flex;gap:16px">
+        <a href="index.html" style="color:rgba(255,255,255,0.6)">Home</a>
+        <a href="estimate.html" style="color:rgba(255,255,255,0.6)">Estimator</a>
+        <a href="admin.html" style="color:rgba(255,255,255,0.6)">Admin</a>
+      </div>
+      <div class="footer-credit">Developed by JSPN<br/>Built with HTML · CSS · JavaScript</div>
+    </div>
+  </div>
+</footer>
+
+<script src="data-loader.js"></script>
+<script src="script.js"></script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Open roles — hardcoded here but can be moved to data.json / admin panel later
+const JOBS = [
+  { title: 'Site Engineer', dept: 'Engineering', type: 'Full-time', location: 'On-site', exp: '2–5 years', desc: 'Oversee day-to-day construction activities, quality checks, and coordination with contractors.' },
+  { title: 'Project Manager', dept: 'Management', type: 'Full-time', location: 'On-site / Office', exp: '5–10 years', desc: 'End-to-end project ownership from planning through client handover.' },
+  { title: 'Architect', dept: 'Design', type: 'Full-time', location: 'Office', exp: '3–7 years', desc: 'Design residential and commercial projects, produce drawings, and liaise with clients.' },
+  { title: 'Interior Designer', dept: 'Design', type: 'Full-time', location: 'Office', exp: '2–5 years', desc: 'Conceptualise and execute premium interior spaces for residential projects.' },
+  { title: 'Civil Supervisor', dept: 'Engineering', type: 'Full-time', location: 'On-site', exp: '1–3 years', desc: 'Supervise RCC, masonry, and finishing work to ensure quality benchmarks.' },
+  { title: 'Digital Marketing Executive', dept: 'Marketing', type: 'Full-time', location: 'Office', exp: '1–3 years', desc: 'Manage social media, Google Ads, SEO and content for the BigLand brand.' },
+];
+
+const grid = document.getElementById('jobsGrid');
+JOBS.forEach((j) => {
+  const el = document.createElement('div');
+  el.className = 'card career-card reveal';
+  el.innerHTML = `
+    <p class="dept">${j.dept}</p>
+    <h3>${j.title}</h3>
+    <div class="tags">
+      <span class="tag">⏱ ${j.type}</span>
+      <span class="tag">📍 ${j.location}</span>
+      <span class="tag">💼 ${j.exp}</span>
+    </div>
+    <p>${j.desc}</p>
+    <a href="#apply" onclick="scrollToId('apply')" class="btn btn-outline btn-sm">Apply Now →</a>`;
+  grid.appendChild(el);
+});
+
+// Update WhatsApp apply link with company number from data.json
+loadSiteData().then((D) => {
+  const wa = D.company?.whatsapp || '917505205205';
+  const btn = document.getElementById('waApplyBtn');
+  if (btn) btn.href = `https://wa.me/${wa}?text=Hi%2C%20I%20would%20like%20to%20apply%20for%20a%20position%20at%20BigLand%20Construction.%20Please%20find%20my%20details%3A`;
+  observeReveal();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+{
+  "company": {
+    "name": "BigLand Construction",
+    "slogan": "Building Dreams, Crafting Legacies",
+    "tagline": "Premium Construction. Transparent Pricing. Lifetime Trust.",
+    "phone": "+91 7505 205 205",
+    "whatsapp": "917505205205",
+    "email": "info@biglandconstruction.com",
+    "address": "123, Construction Nagar, Your City, India",
+    "social": {
+      "facebook": "https://facebook.com/biglandconstruction",
+      "instagram": "https://instagram.com/biglandconstruction",
+      "youtube": "https://youtube.com/@biglandconstruction",
+      "linkedin": "https://linkedin.com/company/biglandconstruction"
+    },
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  "stats": [
+    { "value": 20, "suffix": "L+", "label": "Sq. Ft. Constructed" },
+    { "value": 470, "suffix": "+", "label": "Quality Checks" },
+    { "value": 11, "suffix": "+", "label": "Years Experience" },
+    { "value": 350, "suffix": "+", "label": "Happy Families" }
+  ],
+  "packages": [
+    { "name": "Essential", "pricePerSqft": 1650, "featured": false, "features": ["Standard fittings", "RCC structure", "5-year structural warranty", "Basic electrical & plumbing"] },
+    { "name": "Premium", "pricePerSqft": 1950, "featured": true, "features": ["Branded fittings", "Vitrified tiles", "7-year structural warranty", "Modular kitchen shell"] },
+    { "name": "Luxury", "pricePerSqft": 2450, "featured": false, "features": ["Designer fittings", "Italian marble options", "10-year structural warranty", "False ceiling included"] },
+    { "name": "Signature", "pricePerSqft": null, "featured": false, "features": ["Bespoke architecture", "Imported materials", "10-year warranty", "Dedicated project architect"] }
+  ],
+  "estimator": {
+    "baseRate": { "essential": 1650, "premium": 1950, "luxury": 2450, "signature": 3200 },
+    "locationMultiplier": { "metro": 1.15, "tier2": 1.0, "tier3": 0.88 },
+    "materialMultiplier": { "standard": 0.92, "premium": 1.0, "imported": 1.35 },
+    "brands": {
+      "cement": ["UltraTech", "ACC", "Ambuja", "Shree Cement", "JK Cement"],
+      "steel": ["TATA Steel", "JSW Steel", "SAIL", "Vizag Steel", "Jindal Steel"],
+      "tiles": ["Johnson Tiles", "Kajaria", "Somany", "Asian Granito", "RAK Ceramics"],
+      "paint": ["Asian Paints", "Berger Paints", "Nerolac", "Dulux", "Indigo Paints"],
+      "electrical": ["Havells", "Legrand", "Anchor", "Polycab", "Schneider Electric"],
+      "plumbing": ["Astral Pipes", "Supreme", "Prince Pipes", "Finolex", "CPVC Pipes"],
+      "fittings": ["Jaguar", "Hindware", "Jaquar", "Parryware", "Kohler"],
+      "doors": ["Godrej", "Asian Paints Royale", "Greenply", "Century Ply", "Merino"]
+    }
+  },
+  "services": [
+    { "title": "Residential Construction", "desc": "Custom homes built to perfection — from foundation to finishing.", "img": "https://i.pinimg.com/1200x/b2/64/91/b2649169d21b6a0d807114d325fc73f6.jpg", "icon": "🏠" },
+    { "title": "Commercial Construction", "desc": "Offices, showrooms & commercial spaces built for impact.", "img": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop&auto=format", "icon": "🏢" },
+    { "title": "Interior Design", "desc": "Luxury interiors that reflect your personality and style.", "img": "https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&h=400&fit=crop&auto=format", "icon": "🛋️" },
+    { "title": "Renovation & Remodelling", "desc": "Breathe new life into existing structures with expert renovation.", "img": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&h=400&fit=crop&auto=format", "icon": "🔨" },
+    { "title": "Architectural Design", "desc": "Award-winning architecture that stands the test of time.", "img": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&h=400&fit=crop&auto=format", "icon": "📐" },
+    { "title": "Project Management", "desc": "End-to-end project oversight so you never miss a milestone.", "img": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&h=400&fit=crop&auto=format", "icon": "📋" }
+  ],
+  "team": [
+    { "name": "Your Name Here", "role": "Founder & CEO", "exp": "15+ Years", "photo": null },
+    { "name": "Your Name Here", "role": "Chief Architect", "exp": "12+ Years", "photo": null },
+    { "name": "Your Name Here", "role": "Project Director", "exp": "10+ Years", "photo": null },
+    { "name": "Your Name Here", "role": "Site Engineer", "exp": "8+ Years", "photo": null }
+  ],
+  "trustedBrands": [
+    { "name": "UltraTech Cement", "logo": null },
+    { "name": "TATA Steel", "logo": null },
+    { "name": "Asian Paints", "logo": null },
+    { "name": "Kajaria Tiles", "logo": null },
+    { "name": "Havells", "logo": null },
+    { "name": "Jaguar Fittings", "logo": null },
+    { "name": "Astral Pipes", "logo": null },
+    { "name": "JSW Steel", "logo": null }
+  ],
+  "workingPartners": [
+    { "name": "Partner Firm One", "type": "Structural Consultant", "logo": null },
+    { "name": "Partner Firm Two", "type": "MEP Partner", "logo": null },
+    { "name": "Partner Firm Three", "type": "Interior Partner", "logo": null },
+    { "name": "Partner Firm Four", "type": "Legal & Compliance", "logo": null }
+  ],
+  "clients": [
+    { "name": "Client One", "logo": null },
+    { "name": "Client Two", "logo": null },
+    { "name": "Client Three", "logo": null },
+    { "name": "Client Four", "logo": null },
+    { "name": "Client Five", "logo": null },
+    { "name": "Client Six", "logo": null }
+  ]
+}

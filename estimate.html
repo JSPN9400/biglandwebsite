@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Construction Cost Estimator · BigLand Construction</title>
+<meta name="description" content="Get a detailed construction cost estimate with brand-wise material breakdown. Download PDF quotation instantly."/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+</head>
+<body>
+
+<div id="page-loader"><div class="loader-logo">Big<span>Land</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div></div>
+
+<a href="#main" class="skip-link" onclick="document.getElementById('main').focus();return false">Skip to content</a>
+
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Big<span>Land</span><small>Construction</small></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#quote">Packages</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Get Quote</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main id="main" tabindex="-1" style="padding-top:90px;padding-bottom:80px">
+<div class="container">
+  <div class="section-head" style="margin-bottom:36px">
+    <span class="eyebrow-sm">Instant Quotation</span>
+    <h1 style="font-size:clamp(26px,4vw,36px)">Construction Cost <span class="gold-text">Estimator</span></h1>
+    <p>Full breakdown with brand selection — cement, steel, tiles, paint, fittings, electrical & plumbing. Download a PDF quotation instantly.</p>
+  </div>
+
+  <div class="estimator-wrap">
+    <!-- LEFT: form -->
+    <form id="estForm" novalidate>
+
+      <div class="est-group">
+        <h4>📐 Project Basics</h4>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px">
+          <div class="field"><label for="plot">Plot size (sq.ft.)</label><input id="plot" type="number" class="input" value="1200" min="100"/></div>
+          <div class="field"><label for="area">Build area (sq.ft.)</label><input id="area" type="number" class="input" value="2000" min="100"/></div>
+          <div class="field"><label for="floors">No. of floors</label><input id="floors" type="number" class="input" value="2" min="1" max="10"/></div>
+          <div class="field">
+            <label for="pkg">Package</label>
+            <select id="pkg" class="input">
+              <option value="essential">Essential</option>
+              <option value="premium" selected>Premium</option>
+              <option value="luxury">Luxury</option>
+              <option value="signature">Signature</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="loc">Location</label>
+            <select id="loc" class="input">
+              <option value="metro" selected>Metro City</option>
+              <option value="tier2">Tier-2 City</option>
+              <option value="tier3">Tier-3 / Town</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="matq">Material quality</label>
+            <select id="matq" class="input">
+              <option value="standard">Standard</option>
+              <option value="premium" selected>Premium</option>
+              <option value="imported">Imported</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-checks" style="margin-top:8px">
+          <label><input type="checkbox" id="chkInterior" checked/> Interior fit-out</label>
+          <label><input type="checkbox" id="chkExterior" checked/> Exterior finishing</label>
+        </div>
+      </div>
+
+      <div class="est-group">
+        <h4>🏗️ Brand Selection</h4>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:14px">Select preferred brands — included in your PDF quotation.</p>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px" id="brandFields"></div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" style="font-size:15px;padding:14px">🧮 Calculate Detailed Estimate</button>
+    </form>
+
+    <!-- RIGHT: result -->
+    <div>
+      <div id="estPlaceholder" class="placeholder-box">Fill in the form and click Calculate to see your full material-wise estimate here.</div>
+      <div id="estResult" class="result-card hidden">
+        <h2 style="font-size:17px;margin-bottom:16px">Estimate Breakdown</h2>
+        <div id="estLines"></div>
+        <div class="result-total"><span>Grand Total</span><span id="estTotal"></span></div>
+        <p class="result-persqft" id="estPerSqft"></p>
+        <div id="brandSummary" style="margin-top:14px;padding:12px;background:var(--accent-soft);border-radius:8px;font-size:12.5px"></div>
+        <div class="share-grid">
+          <button class="btn btn-outline btn-sm" id="btnPdf">⬇ PDF</button>
+          <button class="btn btn-outline btn-sm" id="btnPrint">🖨 Print</button>
+          <button class="btn btn-outline btn-sm" id="btnWA">💬 WhatsApp</button>
+          <button class="btn btn-outline btn-sm" id="btnEmail">✉ Email</button>
+        </div>
+        <button class="btn btn-primary btn-block" id="btnCallback" style="margin-top:12px">Request Callback on WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer class="footer" style="padding:32px 0">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> BigLand Construction.</span>
+      <a href="index.html" style="color:rgba(255,255,255,0.6)">← Back to site</a>
+      <div class="footer-credit">Developed by JSPN<br/>Built with HTML · CSS · JavaScript</div>
+    </div>
+  </div>
+</footer>
+
+<script src="data-loader.js"></script>
+<script src="script.js"></script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const inr = new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0});
+const CATEGORY_LABELS = {cement:'Cement',steel:'Steel / TMT Bars',tiles:'Tiles & Flooring',paint:'Paint',electrical:'Electrical',plumbing:'Plumbing & Pipes',fittings:'Sanitary Fittings',doors:'Doors & Woodwork'};
+const SPLIT = {material_civil:0.32,material_tiles:0.07,material_paint:0.05,material_electric:0.08,material_plumbing:0.07,material_fittings:0.06,labour:0.20,finishing:0.08,project_mgmt:0.07};
+const GST = 0.18;
+const INTERIOR_A = 0.08;
+const EXTERIOR_A = 0.06;
+const FLOOR_PREM = 0.03;
+
+let BASE_RATE = {essential:1650,premium:1950,luxury:2450,signature:3200};
+let LOC_MULT = {metro:1.15,tier2:1.0,tier3:0.88};
+let MAT_MULT = {standard:0.92,premium:1.0,imported:1.35};
+let BRANDS = {};
+let WA_NUM = '917505205205';
+let dataReady = loadSiteData().then((D) => {
+  if (D.estimator) {
+    BASE_RATE = D.estimator.baseRate || BASE_RATE;
+    LOC_MULT = D.estimator.locationMultiplier || LOC_MULT;
+    MAT_MULT = D.estimator.materialMultiplier || MAT_MULT;
+    BRANDS = D.estimator.brands || {};
+  }
+  if (D.company?.whatsapp) WA_NUM = D.company.whatsapp;
+  renderBrandFields();
+});
+
+function renderBrandFields() {
+  const wrap = document.getElementById('brandFields');
+  wrap.innerHTML = '';
+  Object.entries(CATEGORY_LABELS).forEach(([key, label]) => {
+    const opts = (BRANDS[key] || []);
+    if (!opts.length) return;
+    const div = document.createElement('div');
+    div.className = 'field';
+    div.innerHTML = `<label for="brand_${key}">${label}</label>
+      <select id="brand_${key}" class="input">
+        <option value="">— Any Brand —</option>
+        ${opts.map(o=>`<option>${o}</option>`).join('')}
+      </select>`;
+    wrap.appendChild(div);
+  });
+}
+
+function getSelectedBrands() {
+  const result = {};
+  Object.keys(CATEGORY_LABELS).forEach((key) => {
+    const el = document.getElementById('brand_' + key);
+    if (el && el.value) result[CATEGORY_LABELS[key]] = el.value;
+  });
+  return result;
+}
+
+function calculate() {
+  const area = Number(document.getElementById('area').value) || 2000;
+  const floors = Number(document.getElementById('floors').value) || 1;
+  const pkg = document.getElementById('pkg').value;
+  const loc = document.getElementById('loc').value;
+  const matq = document.getElementById('matq').value;
+  const interior = document.getElementById('chkInterior').checked;
+  const exterior = document.getElementById('chkExterior').checked;
+
+  let subtotal = BASE_RATE[pkg] * LOC_MULT[loc] * MAT_MULT[matq] * area;
+  if (interior) subtotal *= 1 + INTERIOR_A;
+  if (exterior) subtotal *= 1 + EXTERIOR_A;
+  const labourMult = 1 + FLOOR_PREM * Math.max(floors - 1, 0);
+
+  const buckets = {};
+  Object.entries(SPLIT).forEach(([k, share]) => {
+    let amt = subtotal * share;
+    if (k === 'labour') amt *= labourMult;
+    buckets[k] = Math.round(amt);
+  });
+  const preTax = Object.values(buckets).reduce((a,b)=>a+b,0);
+  const tax = Math.round(preTax * GST);
+  const total = preTax + tax;
+  return { buckets, tax, total, perSqft: Math.round(total / area) };
+}
+
+let lastResult = null;
+let lastBrands = {};
+
+document.getElementById('estForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  await dataReady;
+  lastResult = calculate();
+  lastBrands = getSelectedBrands();
+  renderResult();
+});
+
+const LINE_LABELS = {
+  material_civil:'Civil & Structural Material',
+  material_tiles:'Tiles & Flooring',
+  material_paint:'Paint & Waterproofing',
+  material_electric:'Electrical Material',
+  material_plumbing:'Plumbing & Pipes',
+  material_fittings:'Sanitary Fittings',
+  labour:'Labour & Skilled Workforce',
+  finishing:'Interior / Exterior Finishing',
+  project_mgmt:'Project Management & Overheads',
+};
+
+function renderResult() {
+  document.getElementById('estPlaceholder').classList.add('hidden');
+  const rc = document.getElementById('estResult');
+  rc.classList.remove('hidden');
+  const lines = document.getElementById('estLines');
+  lines.innerHTML = '';
+  Object.entries(lastResult.buckets).forEach(([k, v]) => {
+    const row = document.createElement('div');
+    row.className = 'result-row';
+    row.innerHTML = `<span>${LINE_LABELS[k] || k}</span><span>${inr.format(v)}</span>`;
+    lines.appendChild(row);
+  });
+  const taxRow = document.createElement('div');
+  taxRow.className = 'result-row';
+  taxRow.innerHTML = `<span>GST (18%)</span><span>${inr.format(lastResult.tax)}</span>`;
+  lines.appendChild(taxRow);
+  document.getElementById('estTotal').textContent = inr.format(lastResult.total);
+  document.getElementById('estPerSqft').textContent = `≈ ${inr.format(lastResult.perSqft)} / sq.ft.`;
+
+  const bs = document.getElementById('brandSummary');
+  const brandEntries = Object.entries(lastBrands);
+  if (brandEntries.length) {
+    bs.innerHTML = '<strong style="font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:var(--accent-h)">Selected Brands:</strong><br/>'
+      + brandEntries.map(([k,v])=>`<span style="margin-right:12px">${k}: <strong>${v}</strong></span>`).join('');
+    bs.style.display = 'block';
+  } else {
+    bs.style.display = 'none';
+  }
+  document.getElementById('btnCallback').textContent = 'Request Callback on WhatsApp';
+  document.getElementById('btnCallback').disabled = false;
+}
+
+function buildPdfText() {
+  const area = document.getElementById('area').value;
+  const floors = document.getElementById('floors').value;
+  const pkg = document.getElementById('pkg').value;
+  const matq = document.getElementById('matq').value;
+  return { area, floors, pkg, matq };
+}
+
+document.getElementById('btnPdf').addEventListener('click', () => {
+  if (!lastResult) return;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const info = buildPdfText();
+  doc.setFont('helvetica','bold'); doc.setFontSize(18);
+  doc.text('BigLand Construction', 14, 20);
+  doc.setFont('helvetica','normal'); doc.setFontSize(11);
+  doc.text('Construction Cost Quotation', 14, 28);
+  doc.setFontSize(10);
+  doc.text(`Build area: ${info.area} sq.ft.  |  Floors: ${info.floors}  |  Package: ${info.pkg}  |  Material: ${info.matq}`, 14, 40);
+
+  // Brand table
+  const brandEntries = Object.entries(lastBrands);
+  if (brandEntries.length) {
+    doc.setFont('helvetica','bold'); doc.setFontSize(10);
+    doc.text('Selected Brands:', 14, 52);
+    doc.setFont('helvetica','normal'); doc.setFontSize(9);
+    let bx = 14, by = 59;
+    brandEntries.forEach(([k,v]) => {
+      doc.text(`${k}: ${v}`, bx, by);
+      by += 6;
+      if (by > 200) { doc.addPage(); by = 20; }
+    });
+    doc.setFontSize(10);
+    var y = by + 8;
+  } else {
+    var y = 60;
+  }
+
+  doc.setFont('helvetica','bold'); doc.setFontSize(10);
+  doc.text('Cost Breakdown', 14, y); y += 8;
+  doc.setFont('helvetica','normal');
+  Object.entries(lastResult.buckets).forEach(([k, v]) => {
+    doc.text(LINE_LABELS[k] || k, 14, y);
+    doc.text(inr.format(v), 160, y, {align:'right'});
+    y += 7;
+  });
+  doc.text('GST (18%)', 14, y); doc.text(inr.format(lastResult.tax), 160, y, {align:'right'}); y += 7;
+  doc.setFont('helvetica','bold'); doc.setFontSize(12);
+  doc.text('Grand Total', 14, y+4); doc.text(inr.format(lastResult.total), 160, y+4, {align:'right'}); y += 14;
+  doc.setFont('helvetica','italic'); doc.setFontSize(8.5);
+  doc.text(`≈ ${inr.format(lastResult.perSqft)} per sq.ft.`, 14, y); y += 12;
+  doc.setFont('helvetica','normal'); doc.setFontSize(8);
+  doc.setTextColor(130,120,110);
+  doc.text('This is an indicative estimate. Final pricing will be confirmed after a free site visit by BigLand Construction.', 14, y);
+  doc.text('All prices are inclusive of material, labour, and applicable taxes as itemized above.', 14, y+5);
+  doc.setTextColor(184,149,58);
+  doc.text('BigLand Construction — Building Dreams, Crafting Legacies', 14, 285);
+  doc.save('bigland-construction-quotation.pdf');
+});
+
+document.getElementById('btnPrint').addEventListener('click', () => window.print());
+
+document.getElementById('btnWA').addEventListener('click', () => {
+  if (!lastResult) return;
+  const brandLine = Object.entries(lastBrands).map(([k,v])=>`${k}: ${v}`).join(', ');
+  const text = `BigLand Construction — My Estimate\nTotal: ${inr.format(lastResult.total)}\nCost/sq.ft: ${inr.format(lastResult.perSqft)}`
+    + (brandLine ? `\nBrands: ${brandLine}` : '');
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+});
+
+document.getElementById('btnEmail').addEventListener('click', () => {
+  if (!lastResult) return;
+  const subject = encodeURIComponent('My BigLand Construction Estimate');
+  const body = encodeURIComponent(`Total: ${inr.format(lastResult.total)}\nCost/sq.ft: ${inr.format(lastResult.perSqft)}\n\nVisit biglandconstruction.com/estimate.html for details.`);
+  window.location.href = `mailto:?subject=${subject}&body=${body}`;
+});
+
+document.getElementById('btnCallback').addEventListener('click', () => {
+  if (!lastResult) return;
+  const area = document.getElementById('area').value;
+  const pkg = document.getElementById('pkg').value;
+  const text = `Hi, I'd like a callback about my construction estimate.\nArea: ${area} sq.ft. | Package: ${pkg}\nTotal: ${inr.format(lastResult.total)}`;
+  window.open(`https://wa.me/${WA_NUM}?text=${encodeURIComponent(text)}`, '_blank');
+  document.getElementById('btnCallback').textContent = 'Sent on WhatsApp ✓';
+  document.getElementById('btnCallback').disabled = true;
+});
+</script>
+</body>
+</html>
